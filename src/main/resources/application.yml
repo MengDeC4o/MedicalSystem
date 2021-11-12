@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://localhost:3306/dbappapidemo
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.se.hospitalmanagement.dao
