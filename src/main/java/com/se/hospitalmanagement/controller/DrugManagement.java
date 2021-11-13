@@ -22,17 +22,6 @@ public class DrugManagement {
     @Autowired(required = false)
     private DrugMapper drugMapper;
 
-    @RequestMapping(value = "/getAllDrugs")
-    public Map<String,Object> getAllDrugs(){
-        Map<String,Object> map = new HashMap<>();
-        //PageHelper.startPage(currentPage,10);
-        List<Drug> list = drugMapper.selectAllDrugs();
-        //PageInfo<Patient> pageInfo=new PageInfo<>(list);
-        //map.put("pageInfo",pageInfo);
-        map.put("albums",list);
-        return map;
-    }
-
     @RequestMapping(value = "/stock_change")
     public Map<String, Object> stock_change(@RequestParam("new_stock") int new_stock, @RequestParam("drug_id") int drug_id)
     {
@@ -55,8 +44,21 @@ public class DrugManagement {
     public Map<String, Object> insert_newDrug(@RequestParam("drug_name")  String drug_name)
     {
         Map<String, Object> map = new HashMap<>();
-        drugMapper.insert(new Drug(drug_name));
-        map.put("result","success!");
+        if (drugMapper.countByDrugName(drug_name)>0) // if Drug already exists in the database
+        {
+            Drug selected_drug = drugMapper.selectByDrugName(drug_name);
+            int new_stock = selected_drug.getStock()+1;
+            int d_id = selected_drug.getDrug_id();
+
+            drugMapper.Update_Stock(new_stock,d_id);
+            map.put("result","already exist, increment!");
+        }
+        else
+        {
+            drugMapper.insert(new Drug(drug_name));
+            map.put("result","successful insertion!");
+        }
+
         return map;
     }
 }
