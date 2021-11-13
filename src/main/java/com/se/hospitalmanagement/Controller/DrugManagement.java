@@ -1,4 +1,4 @@
-package com.se.hospitalmanagement.controller.shixun;
+package com.se.hospitalmanagement.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
