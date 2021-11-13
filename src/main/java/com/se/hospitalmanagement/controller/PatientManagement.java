@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.se.hospitalmanagement.mapper.*;
 import com.se.hospitalmanagement.model.*;
-import com.se.hospitalmanagement.DateTimeUtil;
+import com.se.hospitalmanagement.util.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
