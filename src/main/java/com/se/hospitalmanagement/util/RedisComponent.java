@@ -1,4 +1,4 @@
-package com.lin.appapidemo.util;
+package com.se.hospitalmanagement.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
