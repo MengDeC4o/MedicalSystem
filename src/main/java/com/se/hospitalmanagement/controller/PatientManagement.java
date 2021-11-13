@@ -19,6 +19,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/Patient")
 public class PatientManagement {
+    @Autowired(required = false)
+    private PatientMapper patientMapper;
+    
     @RequestMapping(value = "/patient_name_search")
     public Map<String,Object> patient_name_search(@RequestParam("patient_id")int patient_id)
     {
