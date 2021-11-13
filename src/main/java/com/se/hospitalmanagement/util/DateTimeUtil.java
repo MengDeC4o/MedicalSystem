@@ -1,4 +1,4 @@
-package com.lin.appapidemo.util;
+package com.se.hospitalmanagement.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
