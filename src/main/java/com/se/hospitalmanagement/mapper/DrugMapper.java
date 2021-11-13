@@ -18,7 +18,8 @@ public interface DrugMapper extends MyMapper<Drug> {
             @Result(column = "drug_produceDate", property = "drug_produceDate"),
             @Result(column = "drug_expdate", property = "drug_expdate"),
             @Result(column = "stock", property = "stock"),
-            @Result(column = "treat_disease", property = "treat_disease"),
+            @Result(column = "drug_abstract", property = "drug_abstract"),
+            @Result(column = "drug_description", property = "drug_description"),
             @Result(column = "commen", property = "commen")
     })
     Drug selectByDrugId(@Param("drug_id") int drug_id);
@@ -33,7 +34,8 @@ public interface DrugMapper extends MyMapper<Drug> {
             @Result(column = "drug_produceDate", property = "drug_produceDate"),
             @Result(column = "drug_expdate", property = "drug_expdate"),
             @Result(column = "stock", property = "stock"),
-            @Result(column = "treat_disease", property = "treat_disease"),
+            @Result(column = "drug_abstract", property = "drug_abstract"),
+            @Result(column = "drug_description", property = "drug_description"),
             @Result(column = "commen", property = "commen")
     })
     List<Drug> selectAllDrugs();
