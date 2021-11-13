@@ -22,6 +22,17 @@ public class PatientManagement {
     @Autowired(required = false)
     private PatientMapper patientMapper;
     
+    @RequestMapping(value = "/getAllPatients")
+    public Map<String,Object> getAllPatients(){
+        Map<String,Object> map=new HashMap<>();
+        //PageHelper.startPage(currentPage,10);
+        List<Patient> list=patientMapper.selectAllPatients();
+        //PageInfo<Patient> pageInfo=new PageInfo<>(list);
+        //map.put("pageInfo",pageInfo);
+        map.put("albums",list);
+        return map;
+    }
+    
     @RequestMapping(value = "/patient_name_search")
     public Map<String,Object> patient_name_search(@RequestParam("patient_id")int patient_id)
     {
