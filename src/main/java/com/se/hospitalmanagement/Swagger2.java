@@ -1,4 +1,4 @@
-package com.lin.appapidemo;
+package com.se.hospitalmanagement;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
