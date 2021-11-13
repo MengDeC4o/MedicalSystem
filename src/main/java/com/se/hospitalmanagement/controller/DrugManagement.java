@@ -22,6 +22,17 @@ public class DrugManagement {
     @Autowired(required = false)
     private DrugMapper drugMapper;
 
+    @RequestMapping(value = "/getAllDrugs")
+    public Map<String,Object> getAllDrugs(){
+        Map<String,Object> map = new HashMap<>();
+        //PageHelper.startPage(currentPage,10);
+        List<Drug> list = drugMapper.selectAllDrugs();
+        //PageInfo<Patient> pageInfo=new PageInfo<>(list);
+        //map.put("pageInfo",pageInfo);
+        map.put("albums",list);
+        return map;
+    }
+
     @RequestMapping(value = "/stock_change")
     public Map<String, Object> stock_change(@RequestParam("new_stock") int new_stock, @RequestParam("drug_id") int drug_id)
     {
