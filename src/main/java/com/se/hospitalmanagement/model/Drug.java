@@ -1,4 +1,4 @@
-package com.lin.appapidemo.model.shixun;
+package com.se.hospitalmanagement.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
