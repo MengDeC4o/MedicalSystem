@@ -17,10 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/excise")
-public class ExciseController {
-    @Autowired(required = false)
-    private PatientMapper patientMapper;
+@RequestMapping("/Drug")
+public class DrugManagement {
     @Autowired(required = false)
     private DrugMapper drugMapper;
 
