@@ -61,4 +61,16 @@ public class DrugManagement {
 
         return map;
     }
+
+
+    @RequestMapping(value = "/getAllDrugs")
+    public Map<String,Object> getAllDrugs(){
+        Map<String,Object> map=new HashMap<>();
+        //PageHelper.startPage(currentPage,10);
+        List<Drug> list= drugMapper.selectAllDrugs();
+        //PageInfo<Patient> pageInfo=new PageInfo<>(list);
+        //map.put("pageInfo",pageInfo);
+        map.put("drugs",list);
+        return map;
+    }
 }
