@@ -8,8 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface PatientMapper extends MyMapper<Patient> {
-
-    /** select a single patient in database by patient_Id **/
+     /** select a single patient in database by patient_Id **/
     @Select("select * from t_patient where patient_id=#{patient_id}")
     @Results({
             @Result(id = true, column = "patient_id", property = "patient_id"),
@@ -38,7 +37,5 @@ public interface PatientMapper extends MyMapper<Patient> {
             @Result(column = "patient_account_password", property = "patient_account_password")
     })
     List<Patient> selectAllPatients();
-
-
 
 }

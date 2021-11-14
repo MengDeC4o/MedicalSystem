@@ -1,6 +1,5 @@
 package com.se.hospitalmanagement.model;
 
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -8,6 +7,8 @@ import lombok.experimental.Accessors;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.List;
 
 @Data
 @NoArgsConstructor

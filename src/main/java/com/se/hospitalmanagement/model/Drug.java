@@ -7,6 +7,8 @@ import lombok.experimental.Accessors;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -26,10 +28,15 @@ public class Drug {
     private String drug_expdate;
     @Column(name = "stock")
     private int stock;
-    @Column(name = "treat_disease")
-    private String treat_disease;
+    @Column(name = "drug_abstract")
+    private String drug_abstract;
+    @Column(name = "drug_description")
+    private String drug_description;
     @Column(name = "comm")
     private String comm;
+    @Column(name = "treat_disease")
+    private String treat_disease;
+
 
     public Drug(String drug_name, String drug_producer, String drug_produceDate, String drug_expdate, int stock, String treat_disease, String comm)
     {
@@ -38,7 +45,8 @@ public class Drug {
         this.drug_produceDate=drug_produceDate;
         this.drug_expdate=drug_expdate;
         this.stock=stock;
-        this.treat_disease=treat_disease;
+        this.drug_abstract = drug_abstract;
+        this.drug_description = drug_description;
         this.comm=comm;
     }
 
@@ -46,4 +54,5 @@ public class Drug {
         this.drug_name=drug_name;
         this.stock=1;
     }
+
 }
