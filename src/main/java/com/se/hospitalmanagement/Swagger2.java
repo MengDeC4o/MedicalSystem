@@ -18,7 +18,7 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.se.hospitalmanagement"))
+                .apis(RequestHandlerSelectors.basePackage("com.lin.appapidemo"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -33,4 +33,3 @@ public class Swagger2 {
                 .build();
     }
 }
-
