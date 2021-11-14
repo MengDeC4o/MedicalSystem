@@ -37,4 +37,5 @@ public interface PatientMapper extends MyMapper<Patient> {
             @Result(column = "patient_account_password", property = "patient_account_password")
     })
     List<Patient> selectAllPatients();
+
 }

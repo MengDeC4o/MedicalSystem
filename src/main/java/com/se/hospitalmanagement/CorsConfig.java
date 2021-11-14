@@ -3,12 +3,13 @@ package com.se.hospitalmanagement;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 /**
  * 前端报错 Access-Control-Allow-Origin 的前端问题解决
  *@date: 20:17 2017/12/15
  **/
 @Configuration
-public class CorsConfig extends WebMvcConfigurerAdapter{
+public class CorsConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -18,3 +19,4 @@ public class CorsConfig extends WebMvcConfigurerAdapter{
                 .maxAge(3600);
     }
 }
+
