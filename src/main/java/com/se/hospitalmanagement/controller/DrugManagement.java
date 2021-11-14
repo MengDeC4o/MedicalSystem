@@ -22,55 +22,86 @@ public class DrugManagement {
     @Autowired(required = false)
     private DrugMapper drugMapper;
 
-    @RequestMapping(value = "/stock_change")
-    public Map<String, Object> stock_change(@RequestParam("new_stock") int new_stock, @RequestParam("drug_id") int drug_id)
+    @RequestMapping(value = "/stock_change1")
+    public Map<String, Object> stock_change1(@RequestParam("new_stock") int new_stock, @RequestParam("drug_id") int drug_id)
     {
         Map<String, Object> map = new HashMap<>();
-        drugMapper.Update_Stock(new_stock,drug_id);
-        map.put("result","success!");
+        if (drugMapper.countByDrugID(drug_id)==0)
+        {
+            map.put("failure", "no such drug in record!");
+        }
+        else
+        {
+            drugMapper.Update_StockbyID(new_stock,drug_id);
+            map.put("result","success!");
+        }
+        return map;
+    }
+    @RequestMapping(value = "/stock_change2")
+    public Map<String, Object> stock_change2(@RequestParam("new_stock") int new_stock, @RequestParam("drug_name") String drug_name)
+    {
+        Map<String, Object> map = new HashMap<>();
+        if (drugMapper.countByDrugName(drug_name)==0)
+        {
+            map.put("failure", "no such drug in record!");
+        }
+        else
+        {
+            drugMapper.Update_StockbyName(new_stock,drug_name);
+            map.put("result","success!");
+        }
         return map;
     }
 
-    @RequestMapping(value = "/stock_search")
-    public Map<String, Object> stock_search(@RequestParam("drug_id") int drug_id)
+    @RequestMapping(value = "/stock_search1")
+    public Map<String, Object> stock_search1(@RequestParam("drug_id") int drug_id)
     {
         Map<String, Object> map = new HashMap<>();
-        Drug printed = drugMapper.selectByDrugId(drug_id);
-        map.put("stock",printed.getStock());
+        if (drugMapper.countByDrugID(drug_id)==0)
+        {
+            map.put("failure", "no such drug in record!");
+        }
+        else
+        {
+            Drug printed = drugMapper.selectByDrugId(drug_id);
+            map.put("stock",printed.getStock());
+        }
+        return map;
+    }
+    @RequestMapping(value = "/stock_search2")
+    public Map<String, Object> stock_search2(@RequestParam("drug_name") String drug_name)
+    {
+        Map<String, Object> map = new HashMap<>();
+        if (drugMapper.countByDrugName(drug_name)==0)
+        {
+            map.put("failure", "no such drug in record!");
+        }
+        else
+        {
+            Drug printed = drugMapper.selectByDrugName(drug_name);
+            map.put("stock",printed.getStock());
+        }
+
         return map;
     }
 
     @RequestMapping(value = "insert_newDrug")
-    public Map<String, Object> insert_newDrug(@RequestParam("drug_name")  String drug_name)
+    public Map<String, Object> insert_newDrug(@RequestParam("drug_name")  String drug_name,@RequestParam("amount") int amount)
     {
         Map<String, Object> map = new HashMap<>();
         if (drugMapper.countByDrugName(drug_name)>0) // if Drug already exists in the database
         {
             Drug selected_drug = drugMapper.selectByDrugName(drug_name);
-            int new_stock = selected_drug.getStock()+1;
-            int d_id = selected_drug.getDrug_id();
-
-            drugMapper.Update_Stock(new_stock,d_id);
+            int new_stock = selected_drug.getStock()+amount;
+            drugMapper.Update_StockbyName(new_stock,drug_name);
             map.put("result","already exist, increment!");
         }
         else
         {
-            drugMapper.insert(new Drug(drug_name));
+            drugMapper.insert(new Drug(drug_name,amount));
             map.put("result","successful insertion!");
         }
 
-        return map;
-    }
-
-
-    @RequestMapping(value = "/getAllDrugs")
-    public Map<String,Object> getAllDrugs(){
-        Map<String,Object> map=new HashMap<>();
-        //PageHelper.startPage(currentPage,10);
-        List<Drug> list= drugMapper.selectAllDrugs();
-        //PageInfo<Patient> pageInfo=new PageInfo<>(list);
-        //map.put("pageInfo",pageInfo);
-        map.put("drugs",list);
         return map;
     }
 }
