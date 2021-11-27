@@ -83,7 +83,7 @@ public class QueueManagement {
                 removed.setRoomNumRemain(removed.getRoomNumRemain()+1);
                 next_room.getPatientQueue().addLast(removed);
                 next_room.setCurrent_patientNum(next_room.getCurrent_patientNum()+1);
-                map.put("next_room:",next_room.getRoom_id());
+                map.put("success", "next operations successfully inserted");
             }
 
         }
@@ -125,23 +125,19 @@ public class QueueManagement {
         return map;
     }
 
-    @RequestMapping(value="patient_register")
-    public Map<String,Object> patient_register(@RequestParam("patient_account_id") String patient_account_id, @RequestParam("disease") String disease)
+    @RequestMapping(value="/patient_register")
+    public Map<String,Object> patient_register(@RequestParam("patient_account_id") String patient_account_id)
     {
         Map<String, Object> map = new HashMap<>();
-        if (patientMapper.countByPatientAccount(patient_account_id)==0)
+        if (patientMapper.countByPatientAccountID(patient_account_id)==0)
         {
-            Patient inserted = new Patient(patient_account_id, disease);
-            patientMapper.insert(inserted);
-            patientlist.put(patientMapper.selectByPatientAccount(patient_account_id).getPatient_id(),inserted);
-            map.put("result: ","new patient added!");
+            map.put("error: ", "patient not found!");
         }
         else
         {
             int p_id = patientMapper.selectByPatientAccount(patient_account_id).getPatient_id();
-            patientMapper.Update_diseaseByID(disease, p_id);
-            patientlist.get(p_id).setDisease(disease);
-            map.put("result: ","patient updated!");
+            patientlist.put(p_id,patientMapper.selectByPatientAccount(patient_account_id));
+            map.put("success: ","patient registered!");
         }
         return map;
     }

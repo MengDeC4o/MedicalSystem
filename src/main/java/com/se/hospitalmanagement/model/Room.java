@@ -23,6 +23,8 @@ public class Room {
     @Transient
     private String current_doctor;
     @Transient
+    private String current_nurse;
+    @Transient
     private int current_patientNum;
     @Transient
     private LinkedList<Patient> PatientQueue;
@@ -30,7 +32,8 @@ public class Room {
     public Room(String room_function)
     {
         this.room_function=room_function;
-        this.current_doctor="No Doctor";
+        this.current_doctor="No doctor";
+        this.current_nurse="No nurse";
         this.current_patientNum=0;
         this.PatientQueue = new LinkedList<Patient>();
     }

@@ -32,7 +32,7 @@ CREATE TABLE `t_patient` (
   PRIMARY KEY (`patient_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
-insert into `t_patient`(`patient_id`,`patient_name`,`patient_age`,`patient_iden_id`,`last_hospitalizationTime`,`patient_sex`,`disease`,`patient_account_id`) values (NULL,'小明',10,'114514','2020.1','男','瘸腿','小明');
+insert into `t_patient`(`patient_id`,`patient_name`,`patient_age`,`patient_iden_id`,`last_hospitalizationTime`,`patient_sex`,`disease`,`patient_account_id`,`patient_account_password`) values (NULL,'小明',10,'114514','2020.1','男','瘸腿','小明',1111),(NULL,'小刚',11,'1145141','2020.12','男','断手','xiaogang',1111);
 
 
 /*Table structure for table `t_album` */
@@ -63,7 +63,43 @@ CREATE TABLE `t_room` (
   PRIMARY KEY (`room_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
-insert into `t_room`(`room_id`,`room_function`)values(NULL,"喝水"),(NULL,"喝茶"),(NULL,"吃饭"),(NULL,"吃菜");
+insert into `t_room`(`room_id`,`room_function`)values(NULL,"外科手术"),(NULL,"外科门诊"),(NULL,"内科门诊"),(NULL,"B超室");
+
+DROP TABLE IF EXISTS `t_doctor`;
+
+CREATE TABLE `t_doctor` (
+  `doctor_id` int(11) NOT NULL AUTO_INCREMENT,
+  `doctor_name` varchar(110),
+  `doctor_age` int(11) ,
+  `doctor_major` varchar(110),
+  `doctor_department` varchar(110),
+  `doctor_level` varchar(110),
+  `doctor_description` text,
+  `doctor_experience` int(11), 
+  `doctor_account_id` varchar(110),
+  `doctor_account_password` varchar(110),
+  PRIMARY KEY (`doctor_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
+insert into `t_doctor`(`doctor_id`,`doctor_name`,`doctor_age`,`doctor_major`,`doctor_department`,`doctor_level`,`doctor_description`,`doctor_experience`,`doctor_account_id`,`doctor_account_password`) values(NULL,"医生贾",33,"外科手术","外科","见习","应届毕业生","0.5","AA1213","123456"),(NULL,"医生乙",34,"内科手术","内科","普通","态度良好","2","AB1444","123456HMS");
+
+DROP TABLE IF EXISTS `t_nurse`;
+
+CREATE TABLE `t_nurse` (
+  `nurse_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nurse_name` varchar(110),
+  `nurse_age` int(11) ,
+  `nurse_major` varchar(110),
+  `nurse_department` varchar(110),
+  `nurse_level` varchar(110),
+  `nurse_description` text,
+  `nurse_experience` int(11), 
+  `nurse_account_id` varchar(110),
+  `nurse_account_password` varchar(110),
+  PRIMARY KEY (`nurse_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
+insert into `t_nurse`(`nurse_id`,`nurse_name`,`nurse_age`,`nurse_major`,`nurse_department`,`nurse_level`,`nurse_description`,`nurse_experience`,`nurse_account_id`,`nurse_account_password`) values(NULL,"护士丁",17,"外科护理","外科","见习","应届毕业生","0.2","BB12","544322"),(NULL,"护士卡卡",44,"内科护理","内科","专业","口齿不清","4","CA1111","456HMS");
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

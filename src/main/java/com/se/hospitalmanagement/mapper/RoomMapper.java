@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 @Mapper
-public interface RoomMapper extends MyMapper<Patient> {
+public interface RoomMapper extends MyMapper<Room> {
     /**
      * select a room in database by room_Id
      **/

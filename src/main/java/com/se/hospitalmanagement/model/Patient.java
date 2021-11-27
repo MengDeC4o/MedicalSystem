@@ -53,10 +53,10 @@ public class Patient {
         this.roomNumRemain=0;
     }
 
-    public Patient(String patient_account_id, String disease)
+    public Patient(String patient_account_id, String patient_account_password)
     {
         this.patient_account_id=patient_account_id;
-        this.disease=disease;
+        this.patient_account_password=patient_account_password;
         this.roomQueue=new LinkedList<Room>();
         this.roomNumRemain=0;
     }

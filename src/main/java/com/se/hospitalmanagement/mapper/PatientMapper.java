@@ -68,12 +68,17 @@ public interface PatientMapper extends MyMapper<Patient> {
     })
     List<Patient> selectAllPatients();
 
-    /** see whether a single patient is in database **/
-    @Select("select count(*) from t_patient where patient_account_id=#{patient_account_id}")
-    int countByPatientAccount(@Param("patient_account_id") String patient_account_id);
 
     /** update a patient's disease **/
     @Update("update t_patient set disease=#{disease} where patient_id=#{patient_id}")
-    int Update_diseaseByID(@Param("disease") String disease, @Param("patient_id") int patient_id);
+    void Update_diseaseByID(@Param("disease") String disease, @Param("patient_id") int patient_id);
+
+    /** check whether the searched account is a patient **/
+    @Select("select count(*) from t_patient where patient_account_id=#{patient_account_id}")
+    int countByPatientAccountID(@Param("patient_account_id") String patient_account_id);
+
+    /** return the password of a given patient_account_id **/
+    @Select("select patient_account_password from t_patient where patient_account_id=#{patient_account_id}")
+    String searchPasswordByPatientAccountID(@Param("patient_account_id") String patient_account_id);
 
 }
