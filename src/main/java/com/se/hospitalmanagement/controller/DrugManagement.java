@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/Drug")
+@CrossOrigin(origins = {"http://localhost:3000"},allowCredentials = "true",allowedHeaders = {"X-Custom-Header"}, maxAge = 3600L, methods={RequestMethod.GET,RequestMethod.POST,RequestMethod.HEAD})
 public class DrugManagement {
     @Autowired(required = false)
     private DrugMapper drugMapper;
@@ -85,8 +87,8 @@ public class DrugManagement {
         return map;
     }
 
-    @RequestMapping(value = "insert_newDrug")
-    public Map<String, Object> insert_newDrug(@RequestParam("drug_name")  String drug_name,@RequestParam("amount") int amount)
+    @RequestMapping(value = "/insert_newDrug")
+    public Map<String, Object> insert_newDrug(@RequestParam("drug_name")  String drug_name, @RequestParam("drug_producer") String drug_producer, @RequestParam("drug_produceDate") String drug_produceDate, @RequestParam("drug_expdate") String drug_expdate, @RequestParam("amount") int amount)
     {
         Map<String, Object> map = new HashMap<>();
         if (drugMapper.countByDrugName(drug_name)>0) // if Drug already exists in the database
@@ -102,6 +104,17 @@ public class DrugManagement {
             map.put("result","successful insertion!");
         }
 
+        return map;
+    }
+
+    @RequestMapping(value = "/getAllDrugs")
+    public Map<String,Object> getAllPatients(){
+        Map<String,Object> map=new HashMap<>();
+        //PageHelper.startPage(currentPage,10);
+        List<Drug> list=drugMapper.selectAllDrugs();
+        //PageInfo<Patient> pageInfo=new PageInfo<>(list);
+        //map.put("pageInfo",pageInfo);
+        map.put("drug",list);
         return map;
     }
 }
