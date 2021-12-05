@@ -33,14 +33,6 @@ public class PatientManagement {
         return map;
     }
 
-    @RequestMapping(value = "/patient_name_search")
-    public Map<String,Object> patient_name_search(@RequestParam("patient_id")int patient_id)
-    {
-        Map<String,Object> map=new HashMap<>();
-        Patient printed = patientMapper.selectByPatientId(patient_id);
-        map.put("name",printed.getPatient_name());
-        return map;
-    }
 
     @RequestMapping(value = "/patient_id_search")
     public Map<String,Object> patient_name_search_by_name(@RequestParam("patient_name")String patient_name)
@@ -48,6 +40,15 @@ public class PatientManagement {
         Map<String,Object> map=new HashMap<>();
         Patient printed = patientMapper.selectByPatientName(patient_name);
         map.put("id",printed.getPatient_id());
+        return map;
+    }
+
+    @RequestMapping(value = "/patient_search_by_patient_id")
+    public Map<String,Object> patient_search_by_patient_id(@RequestParam("patient_id")int patient_id)
+    {
+        Map<String,Object> map=new HashMap<>();
+        Patient printed = patientMapper.selectByPatientId(patient_id);
+        map.put("patient",printed);
         return map;
     }
 }

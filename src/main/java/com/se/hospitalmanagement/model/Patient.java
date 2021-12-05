@@ -3,7 +3,7 @@ package com.se.hospitalmanagement.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-
+import java.util.LinkedList;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -34,10 +34,13 @@ public class Patient {
     private String patient_account_id;
     @Column(name = "patient_account_password")
     private String patient_account_password;
+    @Transient
+    private LinkedList<Room> roomQueue;
+    @Transient
+    private int roomNumRemain;
 
-    public Patient(int patient_id, String patient_name, int patient_age, String patient_iden_id, String last_hospitalizationTime, String patient_sex, String disease, String patient_account_id, String patient_account_password)
+    public Patient(String patient_name, int patient_age, String patient_iden_id, String last_hospitalizationTime, String patient_sex, String disease, String patient_account_id, String patient_account_password)
     {
-        this.patient_id=patient_id;
         this.patient_name=patient_name;
         this.patient_age=patient_age;
         this.patient_iden_id=patient_iden_id;
@@ -46,6 +49,17 @@ public class Patient {
         this.disease=disease;
         this.patient_account_id=patient_account_id;
         this.patient_account_password=patient_account_password;
+        this.roomQueue=new LinkedList<Room>();
+        this.roomNumRemain=0;
     }
+
+    public Patient(String patient_account_id, String patient_account_password)
+    {
+        this.patient_account_id=patient_account_id;
+        this.patient_account_password=patient_account_password;
+        this.roomQueue=new LinkedList<Room>();
+        this.roomNumRemain=0;
+    }
+
 
 }
