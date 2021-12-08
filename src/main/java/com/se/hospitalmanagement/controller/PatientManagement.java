@@ -29,7 +29,7 @@ public class PatientManagement {
         List<Patient> list=patientMapper.selectAllPatients();
         //PageInfo<Patient> pageInfo=new PageInfo<>(list);
         //map.put("pageInfo",pageInfo);
-        map.put("patients",list);
+        map.put("list",list);
         return map;
     }
 

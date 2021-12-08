@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.se.hospitalmanagement.mapper.*;
 import com.se.hospitalmanagement.model.*;
 import com.se.hospitalmanagement.util.DateTimeUtil;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.web.bind.annotation.*;
@@ -83,10 +84,21 @@ public class DrugManagement {
         return map;
     }
 
+    @ResponseBody
     @RequestMapping(value = "insert_newDrug")
-    public Map<String, Object> insert_newDrug(@RequestParam("drug_name")  String drug_name,@RequestParam("amount") int amount)
+    public Map<String, Object> insert_newDrug( String drug_name,  Integer amount)
     {
+
+        System.out.println("Insert New Drug");
         Map<String, Object> map = new HashMap<>();
+        if(drug_name == null || amount == null){
+            System.out.println("Some parameter is wrong");
+            System.out.println(drug_name);
+            System.out.println(amount);
+            map.put("nullpointer", "some parameter is wrong");
+            return map;
+        }
+        System.out.println(amount);
         if (drugMapper.countByDrugName(drug_name)>0) // if Drug already exists in the database
         {
             Drug selected_drug = drugMapper.selectByDrugName(drug_name);
@@ -96,7 +108,7 @@ public class DrugManagement {
         }
         else
         {
-            drugMapper.insert(new Drug(drug_name,amount));
+            drugMapper.insert(new Drug(drug_name,amount ));
             map.put("result","successful insertion!");
         }
 
@@ -110,7 +122,7 @@ public class DrugManagement {
         List<Drug> list=drugMapper.selectAllDrugs();
         //PageInfo<Patient> pageInfo=new PageInfo<>(list);
         //map.put("pageInfo",pageInfo);
-        map.put("drug",list);
+        map.put("list",list);
         return map;
     }
 }

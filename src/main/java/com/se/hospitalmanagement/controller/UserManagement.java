@@ -16,7 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = {"http://localhost:3000"},allowCredentials = "true",allowedHeaders = {"X-Custom-Header"}, maxAge = 3600L, methods={RequestMethod.GET,RequestMethod.POST,RequestMethod.HEAD})
+//@CrossOrigin(origins = {"http://localhost:3000"},allowCredentials = "true", maxAge = 3600L, methods={RequestMethod.GET,RequestMethod.POST,RequestMethod.HEAD})
 public class UserManagement {
     @Autowired(required = false)
     private DoctorMapper doctorMapper;
@@ -26,10 +26,13 @@ public class UserManagement {
     private PatientMapper patientMapper;
 
     /** login **/
-    @RequestMapping("/login")
-    public Map<String,Object> login(@RequestParam("account") String account, @RequestParam("password") String password, @RequestParam("status") String status)
+    @ResponseBody
+    @RequestMapping(path ="/login")
+    public Map<String,Object> login( String account, String password)
     {
+        String status ="doctor";
         Map<String, Object> map = new HashMap<>();
+        System.out.println("hello");
         if (status.equals("patient"))
         {
             if (patientMapper.countByPatientAccountID(account)==0)
