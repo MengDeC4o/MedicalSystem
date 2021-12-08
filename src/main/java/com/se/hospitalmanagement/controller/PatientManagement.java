@@ -21,7 +21,7 @@ import java.util.Map;
 public class PatientManagement {
     @Autowired(required = false)
     private PatientMapper patientMapper;
-    
+
     @RequestMapping(value = "/getAllPatients")
     public Map<String,Object> getAllPatients(){
         Map<String,Object> map=new HashMap<>();
@@ -29,16 +29,26 @@ public class PatientManagement {
         List<Patient> list=patientMapper.selectAllPatients();
         //PageInfo<Patient> pageInfo=new PageInfo<>(list);
         //map.put("pageInfo",pageInfo);
-        map.put("albums",list);
+        map.put("list",list);
         return map;
     }
-    
-    @RequestMapping(value = "/patient_name_search")
-    public Map<String,Object> patient_name_search(@RequestParam("patient_id")int patient_id)
+
+
+    @RequestMapping(value = "/patient_id_search")
+    public Map<String,Object> patient_name_search_by_name(@RequestParam("patient_name")String patient_name)
+    {
+        Map<String,Object> map=new HashMap<>();
+        Patient printed = patientMapper.selectByPatientName(patient_name);
+        map.put("id",printed.getPatient_id());
+        return map;
+    }
+
+    @RequestMapping(value = "/patient_search_by_patient_id")
+    public Map<String,Object> patient_search_by_patient_id(@RequestParam("patient_id")int patient_id)
     {
         Map<String,Object> map=new HashMap<>();
         Patient printed = patientMapper.selectByPatientId(patient_id);
-        map.put("name",printed.getPatient_name());
+        map.put("patient",printed);
         return map;
     }
 }

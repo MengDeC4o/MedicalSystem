@@ -34,11 +34,8 @@ public class Drug {
     private String drug_description;
     @Column(name = "comm")
     private String comm;
-    @Column(name = "treat_disease")
-    private String treat_disease;
 
-
-    public Drug(String drug_name, String drug_producer, String drug_produceDate, String drug_expdate, int stock, String treat_disease, String comm)
+    public Drug(String drug_name, String drug_producer, String drug_produceDate, String drug_expdate, int stock, String drug_abstract, String drug_description, String comm)
     {
         this.drug_name=drug_name;
         this.drug_producer=drug_producer;
@@ -50,9 +47,16 @@ public class Drug {
         this.comm=comm;
     }
 
-    public Drug(String drug_name) {
+    public Drug(String drug_name,int amount) {
         this.drug_name=drug_name;
-        this.stock=1;
+        this.stock=amount;
     }
 
+    public Drug(String drug_name, String drug_abstract, String drug_description, int amount)
+    {
+        this.drug_name=drug_name;
+        this.drug_abstract = drug_abstract;
+        this.drug_description = drug_description;
+        this.stock=amount;
+    }
 }
