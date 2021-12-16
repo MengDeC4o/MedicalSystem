@@ -85,7 +85,7 @@ public class DrugManagement {
     }
 
     @ResponseBody
-    @RequestMapping(value = "insert_newDrug")
+    @RequestMapping(value = "/insert_newDrug")
     public Map<String, Object> insert_newDrug( String drug_name,  Integer amount)
     {
 
