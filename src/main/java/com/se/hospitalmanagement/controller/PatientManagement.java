@@ -45,6 +45,15 @@ public class PatientManagement {
         return map;
     }
 
+    @RequestMapping(value = "/patient_search_by_accountID")
+    public Map<String,Object> patient_search_by_accountID(@RequestParam("patient_account_id")String patient_account_id)
+    {
+        Map<String,Object> map=new HashMap<>();
+        Patient printed = patientMapper.selectByPatientAccount(patient_account_id);
+        map.put("id",printed);
+        return map;
+    }
+
     @RequestMapping(value = "/patient_search_by_patient_id")
     public Map<String,Object> patient_search_by_patient_id(@RequestParam("patient_id")int patient_id)
     {

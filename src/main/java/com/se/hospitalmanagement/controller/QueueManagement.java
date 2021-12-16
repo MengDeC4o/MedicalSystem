@@ -29,8 +29,8 @@ public class QueueManagement {
     @Autowired(required = false)
     private RoomMapper roomMapper;
 
-    Map<Integer,Room> roomlist;
-    Map<Integer,Patient> patientlist;
+    private Map<Integer,Room> roomlist;
+    private Map<Integer,Patient> patientlist;
 
     /* the algorithm to find the correct-functioned room with minimum patient */
     private int find_room(String operation)
@@ -61,10 +61,6 @@ public class QueueManagement {
         Room next_room = roomlist.get(find_room(operation));
         patient.getRoomQueue().addLast(next_room);
         patient.setRoomNumRemain(patient.getRoomNumRemain()+1);
-        if (next_room.getPatientQueue()==null)
-        {
-            return map;
-        }
         next_room.getPatientQueue().addLast(patient);
         next_room.setCurrent_patientNum(next_room.getCurrent_patientNum()+1);
         map.put("result: ","patient is added to the queue after registration!");
@@ -111,21 +107,6 @@ public class QueueManagement {
             LinkedList<Patient> added = new LinkedList<Patient>();
             room_list.get(i).setPatientQueue(added);
             roomlist.put(room_list.get(i).getRoom_id(),room_list.get(i));
-        }
-        map.put("result: ","successful initialization!");
-        return map;
-    }
-    @RequestMapping(value="/patient_init")
-    public Map<String,Object> patient_init()
-    {
-        Map<String, Object> map = new HashMap<>();
-        patientlist=new HashMap<>();
-        List<Patient> patient_list = patientMapper.selectAllPatients();
-        for (int i=0;i<patient_list.size();i++)
-        {
-            LinkedList<Room> added = new LinkedList<Room>();
-            patient_list.get(i).setRoomQueue(added);
-            patientlist.put(patient_list.get(i).getPatient_id(),patient_list.get(i));
         }
         map.put("result: ","successful initialization!");
         return map;
