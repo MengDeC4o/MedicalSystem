@@ -52,7 +52,7 @@ public class QueueManagement {
 
     /* insert the patient to the corresponding queue after registration */
     @RequestMapping(value="/patient_registered")
-    public Map<String,Object> patient_registered(@RequestParam("patient_id") int patient_id,@RequestParam("operation") String operation)
+    public Map<String,Object> patient_registered( int patient_id, String operation)
     {
         Map<String, Object> map = new HashMap<>();
         Patient patient = patientlist.get(patient_id);
@@ -67,7 +67,7 @@ public class QueueManagement {
 
     /** when a doctor/nurse finishes the work on a particular patient, they call this function **/
     @RequestMapping(value="/patient_finish")
-    public Map<String,Object> patient_finish(@RequestParam("patient_id") int patient_id,@RequestParam("room_id") int room_id,@RequestParam("next_op") String[] next_op)
+    public Map<String,Object> patient_finish(int patient_id, int room_id, String[] next_op)
     {
         Map<String, Object> map = new HashMap<>();
         Room current_room = roomlist.get(room_id);
@@ -126,7 +126,7 @@ public class QueueManagement {
     }
 
     @RequestMapping(value="/patient_register")
-    public Map<String,Object> patient_register(@RequestParam("patient_account_id") String patient_account_id)
+    public Map<String,Object> patient_register( String patient_account_id)
     {
         Map<String, Object> map = new HashMap<>();
         if (patientMapper.countByPatientAccountID(patient_account_id)==0)
@@ -158,7 +158,7 @@ public class QueueManagement {
     }
 
     @RequestMapping(value="/view_room_queue")
-    public Map<String,Object> view_room_queue(@RequestParam("patient_account_id") String patient_account_id)
+    public Map<String,Object> view_room_queue(String patient_account_id)
     {
         Map<String, Object> map = new HashMap<>();
         int temp_id = patientMapper.selectByPatientAccount(patient_account_id).getPatient_id();
@@ -173,7 +173,7 @@ public class QueueManagement {
     }
 
     @RequestMapping(value="/view_patient_queue")
-    public Map<String,Object> view_patient_queue(@RequestParam("room_id") int room_id)
+    public Map<String,Object> view_patient_queue(int room_id)
     {
         Map<String, Object> map = new HashMap<>();
         LinkedList<String> returned=new LinkedList<String>();

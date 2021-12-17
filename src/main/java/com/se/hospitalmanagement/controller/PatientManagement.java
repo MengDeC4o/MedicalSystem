@@ -35,7 +35,7 @@ public class PatientManagement {
 
 
     @RequestMapping(value = "/patient_id_search")
-    public Map<String,Object> patient_name_search_by_name(@RequestParam("patient_name")String patient_name)
+    public Map<String,Object> patient_name_search_by_name(String patient_name)
     {
         Map<String,Object> map=new HashMap<>();
         Patient printed = patientMapper.selectByPatientName(patient_name);
@@ -43,7 +43,7 @@ public class PatientManagement {
         return map;
     }
     @RequestMapping(value = "/patient_id_searchByAccount")
-    public Map<String,Object> patient_name_searchByAccount(@RequestParam("patient_account_id")String patient_account_id)
+    public Map<String,Object> patient_name_searchByAccount(String patient_account_id)
     {
         Map<String,Object> map=new HashMap<>();
         Patient printed = patientMapper.selectByPatientAccount(patient_account_id);
@@ -52,7 +52,7 @@ public class PatientManagement {
     }
 
     @RequestMapping(value = "/patient_search_by_patient_id")
-    public Map<String,Object> patient_search_by_patient_id(@RequestParam("patient_id")int patient_id)
+    public Map<String,Object> patient_search_by_patient_id(int patient_id)
     {
         Map<String,Object> map=new HashMap<>();
         Patient printed = patientMapper.selectByPatientId(patient_id);
