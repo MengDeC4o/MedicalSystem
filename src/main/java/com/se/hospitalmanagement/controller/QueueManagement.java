@@ -146,8 +146,35 @@ public class QueueManagement {
     public Map<String,Object> init()
     {
         Map<String, Object> map = new HashMap<>();
-        patient_init();
         room_init();
+        patientlist=new HashMap<>();
+        return map;
+    }
+    @RequestMapping(value="/view_room_queue")
+    public Map<String,Object> view_room_queue(@RequestParam("patient_account_id") String patient_account_id)
+    {
+        Map<String, Object> map = new HashMap<>();
+        int temp_id = patientMapper.selectByPatientAccount(patient_account_id).getPatient_id();
+        LinkedList<Integer> returned=new LinkedList<Integer>();
+        LinkedList<Room> temp_roomQueue = patientlist.get(temp_id).getRoomQueue();
+        for (int i=0;i< temp_roomQueue.size();i++)
+        {
+            returned.addLast(temp_roomQueue.get(i).getRoom_id());
+        }
+        map.put("room_queue: ", returned);
+        return map;
+    }
+    @RequestMapping(value="/view_patient_queue")
+    public Map<String,Object> view_patient_queue(@RequestParam("room_id") int room_id)
+    {
+        Map<String, Object> map = new HashMap<>();
+        LinkedList<String> returned=new LinkedList<String>();
+        LinkedList<Patient> temp_patientQueue = roomlist.get(room_id).getPatientQueue();
+        for (int i=0;i< temp_patientQueue.size();i++)
+        {
+            returned.addLast(temp_patientQueue.get(i).getPatient_account_id());
+        }
+        map.put("patient_queue: ", returned);
         return map;
     }
 
