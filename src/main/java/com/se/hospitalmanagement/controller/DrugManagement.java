@@ -22,7 +22,7 @@ public class DrugManagement {
     private DrugMapper drugMapper;
 
     @RequestMapping(value = "/stock_change1")
-    public Map<String, Object> stock_change1(@RequestParam("new_stock") int new_stock, @RequestParam("drug_id") int drug_id)
+    public Map<String, Object> stock_change1(int new_stock, int drug_id)
     {
         Map<String, Object> map = new HashMap<>();
         if (drugMapper.countByDrugID(drug_id)==0)
@@ -37,7 +37,7 @@ public class DrugManagement {
         return map;
     }
     @RequestMapping(value = "/stock_change2")
-    public Map<String, Object> stock_change2(@RequestParam("new_stock") int new_stock, @RequestParam("drug_name") String drug_name)
+    public Map<String, Object> stock_change2(int new_stock, String drug_name)
     {
         Map<String, Object> map = new HashMap<>();
         if (drugMapper.countByDrugName(drug_name)==0)
@@ -53,7 +53,7 @@ public class DrugManagement {
     }
 
     @RequestMapping(value = "/stock_search1")
-    public Map<String, Object> stock_search1(@RequestParam("drug_id") int drug_id)
+    public Map<String, Object> stock_search1(int drug_id)
     {
         Map<String, Object> map = new HashMap<>();
         if (drugMapper.countByDrugID(drug_id)==0)
@@ -68,7 +68,7 @@ public class DrugManagement {
         return map;
     }
     @RequestMapping(value = "/stock_search2")
-    public Map<String, Object> stock_search2(@RequestParam("drug_name") String drug_name)
+    public Map<String, Object> stock_search2( String drug_name)
     {
         Map<String, Object> map = new HashMap<>();
         if (drugMapper.countByDrugName(drug_name)==0)

@@ -41,15 +41,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!--热部署-->
-		<!--<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>-->
-
-		<!--引入web模块-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -58,12 +49,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<!--整合Mybatis
-		    1.引入连接mysql的必要的依赖mysql-connector-java
-		    2.引入整合mybatis的核心依赖mybatis-spring-boot-starter
-		    3.引入tk.mybatis依赖，实现对实体类的增删改查的代码
-		    4.引入pagehelper依赖，实现分页功能
-		-->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
@@ -73,6 +58,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.11</version>
+			<!--		This version should match your local version	-->
 		</dependency>
 		<dependency>
 			<groupId>tk.mybatis</groupId>
@@ -85,7 +71,6 @@
 			<version>1.1.2</version>
 		</dependency>
 
-		<!--引入Lombok相关依赖,用于避免数据Get Set方法的重复创建-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -93,13 +78,11 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!--整合Redis-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
-		<!--整合Swagger2-->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -110,7 +93,6 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.7.0</version>
 		</dependency>
-		<!--发送邮件-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
